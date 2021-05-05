@@ -1,0 +1,22 @@
+version: "3.8"
+
+services:
+  backend:
+    build:
+      context: .
+    container_name: "backend-app"
+    ports:
+      - 4000:4000
+    # volumes:
+    #  - ./:/app
+
+  mongodb:
+    image: mongo:4.4
+    ports:
+      - 27017:27017
+    volumes:
+      - mongo-data:/data/db
+      - mongodb_config:/data/configdb
+volumes:
+  mongo-data:
+  mongodb_config:
