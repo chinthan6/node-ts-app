@@ -40,15 +40,13 @@ strategiesSchema.statics = {
 
   getStrategyInfo: async function (matchQuery = {}) {
     try {
-      const strategies = await this.aggregate()
-        .match(matchQuery)
-        .lookup({
-          from: "strategies",
-          localField: "theme",
-          foreignField: "name",
-          as: "themeInfo",
-        })
-        .unwind("themeInfo");
+      const strategies = await this.aggregate().match(matchQuery).lookup({
+        from: "strategies",
+        localField: "theme",
+        foreignField: "name",
+        as: "themeInfo",
+      });
+      //.unwind("themeInfo");
       return strategies;
     } catch (err) {
       throw err;
